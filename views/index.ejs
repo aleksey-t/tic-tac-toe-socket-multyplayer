@@ -1,0 +1,18 @@
+<%- include('header'); -%>
+<h1>
+    <%= title %>
+</h1>
+<p>
+    page content
+</p>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    let socket;
+
+    if (io) {
+        socket = io();
+    }
+</script>
+
+<%- include('footer'); -%>
