@@ -1,61 +1,8 @@
 import "./app.css";
 import Cell from "./components/Cell";
 import { useState } from "react";
-
+import boardModel from "./presets/boardModel.json";
 function App() {
-  const boardModel = [
-    [
-      {
-        row: 0,
-        column: 0,
-        value: "",
-      },
-      {
-        row: 0,
-        column: 1,
-        value: "",
-      },
-      {
-        row: 0,
-        column: 2,
-        value: "",
-      },
-    ],
-    [
-      {
-        row: 1,
-        column: 0,
-        value: "",
-      },
-      {
-        row: 1,
-        column: 1,
-        value: "",
-      },
-      {
-        row: 1,
-        column: 2,
-        value: "",
-      },
-    ],
-    [
-      {
-        row: 2,
-        column: 0,
-        value: "",
-      },
-      {
-        row: 2,
-        column: 1,
-        value: "",
-      },
-      {
-        row: 2,
-        column: 2,
-        value: "",
-      },
-    ],
-  ];
 
   const [turn, setTurn] = useState("x");
   const [winner, setWinner] = useState("x");
