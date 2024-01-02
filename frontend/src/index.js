@@ -1,13 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, {useEffect} from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import "./app.css";
+import NewGame from "./pages/NewGame";
+import reportWebVitals from "./reportWebVitals";
+import {createBrowserRouter, Outlet,  RouterProvider} from "react-router-dom";
+import Game from "./pages/Game";
+import Header from "./components/Header";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const Root = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/new",
+        element: <NewGame />,
+      },
+      {
+        path: "/game/:id",
+        element: <Game />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

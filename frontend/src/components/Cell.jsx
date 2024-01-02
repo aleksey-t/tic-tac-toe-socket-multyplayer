@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cell = ({children, handleClick}) => {
-    return <div onClick={handleClick} className="cell">{children}</div>
+const Cell = ({ handleClick, value}) => {
+    return <div onClick={handleClick} className="cell">{value}</div>
 }
 export default Cell;
