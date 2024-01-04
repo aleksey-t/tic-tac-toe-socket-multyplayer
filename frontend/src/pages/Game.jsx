@@ -14,11 +14,13 @@ const winningCombinations = [
   [2, 4, 6],
 ];
 
+const initialState = Array(9).fill(null);
+
 function App() {
   const [turn, setTurn] = useState("x");
   const [gameLink, setGameLink] = useState();
   const [winner, setWinner] = useState();
-  const [board, setBoard] = useState(Array(9).fill(null));
+  const [board, setBoard] = useState([...initialState]);
   const { gameId } = useParams();
   const [messageStyles, setMessageStyles] = useState("message hide");
 
@@ -61,12 +63,11 @@ function App() {
     return null;
   };
 
-  const copyLink = ()=> {
-    console.log('gameLink',gameLink)
-    navigator.clipboard.writeText(gameLink).then((clipText) => {
-      console.log("clipText", clipText);
-    });
-  }
+  const copyLink = () => {
+    const elem = document.querySelector("#game-link");
+    elem.select();
+    document.execCommand("copy");
+  };
 
   useEffect(() => {
     setMessageStyles(winner ? "message" : "message hide");
@@ -91,12 +92,23 @@ function App() {
         </div>
         {winner && (
           <div className={messageStyles}>
-            <div>Победитель: {winner}</div>
+            <h2>Победитель: {winner}</h2>
             <div>
-              <button>Играть еще</button>
+              <button
+                onClick={() => {
+                  setBoard([...initialState]);
+                  setWinner(null);
+                  setMessageStyles("message hide");
+                }}
+              >
+                Играть еще
+              </button>
             </div>
-            <div className="nav">
-              <a href="/">На главную страницу</a>
+            или
+            <div>
+              <Link to="/" className="link">
+                Создать новую игру
+              </Link>
             </div>
           </div>
         )}
@@ -107,7 +119,7 @@ function App() {
             <div className="link-wrapper">
               {
                 <>
-                  <div className="link">{gameLink}</div>
+                  <input type="text" id="game-link" readOnly value={gameLink} />
                   <div>
                     <button onClick={copyLink}>Копировать</button>
                   </div>

@@ -26,7 +26,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/new', function (req,res){
   res.json({
-    id: v4()
+    id: v4().split('-')[0]
   });
 });
 
