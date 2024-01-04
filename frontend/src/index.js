@@ -1,36 +1,24 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./app.css";
 import NewGame from "./pages/NewGame";
 import reportWebVitals from "./reportWebVitals";
-import {createBrowserRouter, Outlet,  RouterProvider} from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Game from "./pages/Game";
-import Header from "./components/Header";
 
-const Root = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  );
-};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    children: [
-      {
-        path: "/new",
-        element: <NewGame />,
-      },
-      {
-        path: "/game/:id",
-        element: <Game />,
-      },
-    ],
+    element: <NewGame />,
+  },
+  {
+    path: "/game/:gameId",
+    element: <Game />,
   },
 ]);
 

@@ -1,6 +1,7 @@
 import Cell from "../components/Cell";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import { Link, useParams } from "react-router-dom";
 
 const winningCombinations = [
   [0, 1, 2],
@@ -15,8 +16,11 @@ const winningCombinations = [
 
 function App() {
   const [turn, setTurn] = useState("x");
+  const [gameLink, setGameLink] = useState();
   const [winner, setWinner] = useState();
   const [board, setBoard] = useState(Array(9).fill(null));
+  const { gameId } = useParams();
+  const [messageStyles, setMessageStyles] = useState("message hide");
 
   const handleClick = (value) => {
     if (winner) {
@@ -57,8 +61,24 @@ function App() {
     return null;
   };
 
+  const copyLink = ()=> {
+    console.log('gameLink',gameLink)
+    navigator.clipboard.writeText(gameLink).then((clipText) => {
+      console.log("clipText", clipText);
+    });
+  }
+
+  useEffect(() => {
+    setMessageStyles(winner ? "message" : "message hide");
+  }, [winner]);
+
+  useEffect(() => {
+    setGameLink(window.location.host + `/game/${gameId}`);
+  }, [gameId]);
+
   return (
     <>
+      <Header />
       <div className="app">
         <div className="board">
           {board.map((value, index) => (
@@ -70,14 +90,31 @@ function App() {
           ))}
         </div>
         {winner && (
-          <div className="message">
+          <div className={messageStyles}>
             <div>Победитель: {winner}</div>
             <div>
               <button>Играть еще</button>
             </div>
             <div className="nav">
-              <a href="/">Выход</a>
+              <a href="/">На главную страницу</a>
             </div>
+          </div>
+        )}
+
+        {gameId && (
+          <div className="game-link-wrapper">
+            <div>Ссылка на игру:</div>
+            <div className="link-wrapper">
+              {
+                <>
+                  <div className="link">{gameLink}</div>
+                  <div>
+                    <button onClick={copyLink}>Копировать</button>
+                  </div>
+                </>
+              }
+            </div>
+            <div>Скопируйте ее и отправьте тому, с кем хотите поиграть.</div>
           </div>
         )}
       </div>

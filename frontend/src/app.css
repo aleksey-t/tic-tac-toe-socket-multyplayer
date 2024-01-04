@@ -1,12 +1,18 @@
+:root {
+    --background: #305367;
+    color: #b6b6b6;
+}
+
 body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
+    background: var(--background);
+    color: #efefef;
 }
 
 header {
-    background: #eee;
-    height: 100px;
+    background: var(--background);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -17,6 +23,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--background);
+    color: white;
+    flex-direction: column;
 }
 
 .cell {
@@ -25,31 +34,38 @@ header {
     justify-content: center;
     font-size: 50px;
     font-weight: 400;
-    border: solid 1px grey;
+    border: solid 5px #4bab76;
 }
 
 .board {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows:  100px 100px 100px;
-    border: solid 1px grey;
     width: 300px;
     position: relative;
 }
 
 .message {
     position: absolute;
-    background: rgba(255, 255, 255, .9);
+
+    background: rgb(0 0 0 / 50%);
     padding: 20px;
     width: 100%;
-    height: 300px;
+    height: 100vh;
     border-radius: 10px;
     font-size: 2rem;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    top: 0;
+    transition: top ease-in-out .5s;
+}
+
+.message.hide {
+    top: -1000px;
+    transition: top ease-in-out .5s;
 }
 
 .message button {
@@ -61,4 +77,37 @@ header {
 .message .nav {
     margin-top: 2rem;
     font-size: 1.3rem;
+}
+
+button {
+    padding: 10px;
+    background: #24579f;
+    border: solid 1px #5467cc;
+    color: #d0d0d0;
+    border-radius: 5px;
+    box-shadow: #30425d 5px 5px 3px 1px;
+    font-size: 1.2rem;
+}
+
+button:hover {
+    box-shadow: #30425d 5px 5px 3px 1px;
+    background: #2960af;
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: #30425d 3px 3px 3px 1px;
+    background: #24559a;
+}
+.game-link-wrapper{
+    margin: 10px 0;
+}
+.link{
+    color: white;
+}
+.link-wrapper{
+    padding: 20px;
+    border: solid 1px white;
+    border-radius: 5px;
+    margin: 20px 0;
 }

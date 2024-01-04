@@ -1,7 +1,9 @@
-import { useState } from "react";
-import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 function NewGame() {
+  const navigate = useNavigate();
   const [gameId, setGameId] = useState();
   const startNewGame = async () => {
     try {
@@ -19,16 +21,19 @@ function NewGame() {
     }
   };
 
+  useEffect(() => {
+    if (gameId) {
+      navigate(`/game/${gameId}`);
+    }
+  }, [gameId, navigate]);
+
   return (
     <>
-      <div>
-        <button onClick={startNewGame}>Новая игра</button>
-
-        {gameId && (
-          <div>
-            Создана новая игра по ссылке {<Link to={`/game/${gameId}`}>{window.location.host + `/game/${gameId}`}</Link>}
-          </div>
-        )}
+      <Header />
+      <div className="app">
+        <div>
+          <button onClick={startNewGame}>Новая игра</button>
+        </div>
       </div>
     </>
   );
