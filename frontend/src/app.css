@@ -78,7 +78,7 @@ header {
     font-size: 1.3rem;
 }
 
-.message div{
+.message div {
     margin: 10px 0;
 }
 
@@ -89,7 +89,7 @@ button {
     color: #333;
     border-radius: 5px;
     box-shadow: #30425d 5px 5px 3px 1px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,26 +101,60 @@ button:hover {
     cursor: pointer;
 }
 
-.game-link-wrapper{
+.game-link-wrapper {
     margin: 10px 0;
 }
-.link{
+
+.link {
     color: white;
 }
-.link-wrapper{
+
+.link-wrapper {
     padding: 20px;
     border: solid 1px white;
     border-radius: 5px;
     margin: 20px 0;
 }
 
-input[type=text]{
+input[type=text] {
     padding: 5px 10px;
     width: 300px;
     text-overflow: ellipsis;
     margin: 5px 0;
 }
 
-.line-wrapper{
+.line-wrapper {
     margin: 20px 0;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.log {
+    border: solid 1px #cccccc;
+    color: #b4b4b4;
+    height: 150px;
+    overflow-y: scroll;
+}
+.log .title{
+    padding: 10px;
+}
+.log li {
+    color: #a6a6a6;
+    background: #2d2d2d;
+    display: block;
+    padding: 0 10px;
+
+}
+
+.log li.success {
+    background: #1a4b06;
+    display: block;
+}
+.log li.danger {
+    background: #4b061a;
+    display: block;
 }
